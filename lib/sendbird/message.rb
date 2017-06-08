@@ -9,7 +9,7 @@ module SendBird
     def mark_as_read
     end
     
-    def create(params = {}, headers = {})
+    def self.create(params = {}, headers = {})
       response = JSON.parse(RestClient.post(base_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
     end
   end
