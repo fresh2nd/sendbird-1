@@ -11,8 +11,6 @@ module SendBird
 
     def self.list(params = {})
       response = JSON.parse(RestClient.get(base_url, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
-      puts response
-      convert_to_sendbird_object(response['users'])
     end
 
     def open_channels
