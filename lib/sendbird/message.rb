@@ -1,6 +1,5 @@
 module SendBird
   class Message < APIResource
-    extend SendBird::APIOperations::Create
     include SendBird::APIOperations::Delete
 
     def self.base_url(params = {})
@@ -8,6 +7,10 @@ module SendBird
     end
 
     def mark_as_read
+    end
+    
+    def create(params = {}, headers = {})
+      response = JSON.parse(RestClient.post(base_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
     end
   end
 end
