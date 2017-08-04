@@ -38,6 +38,9 @@ user.delete
 
 # See list of users 
 SendBird::User.list
+
+# Send a message
+SendBird::Message.create message_type: 'MESG', channel_type: 'group_channels', user_id: user_id, message: message, channel_url: sendbird_channel_url
 ```
 
 ## Development
