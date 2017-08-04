@@ -17,8 +17,8 @@ module SendBird
       response = JSON.parse(RestClient.post(base_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
     end
     
-    def self.editj(params = {}, headers = {})
-      response = SON.parse(RestClient.put(edit_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
+    def self.edit(params = {}, headers = {})
+      response = JSON.parse(RestClient.put(edit_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
     end
   end
 end
