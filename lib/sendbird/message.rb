@@ -25,7 +25,14 @@ module SendBird
     end
     
     def self.edit(params = {}, headers = {})
-      response = JSON.parse(RestClient.put(resource_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
+      response = JSON.parse(
+        begin
+          RestClient.put(resource_url(params), params.to_json, { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
+          puts e.response
+        end
+       )
     end
     
     def self.view(params = {}, headers = {})
