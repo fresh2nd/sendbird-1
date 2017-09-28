@@ -38,5 +38,9 @@ module SendBird
     def self.view(params = {}, headers = {})
       response = JSON.parse(RestClient.get(resource_url(params), { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
     end
+    
+    def self.delete(params = {}, headers = {})
+      response = JSON.parse(RestClient.delete(resource_url(params), { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
+    end
   end
 end
