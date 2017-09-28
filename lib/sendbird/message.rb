@@ -40,7 +40,14 @@ module SendBird
     end
     
     def self.delete(params = {}, headers = {})
-      response = JSON.parse(RestClient.delete(resource_url(params), { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body)
+      response = JSON.parse(
+        begin
+          RestClient.delete(resource_url(params), { content_type: :json, 'Api-Token': SendBird.configuration.api_key }).body
+        rescue RestClient::ExceptionWithResponse => e
+          e.response
+          puts e.response
+        end
+       )
     end
   end
 end
